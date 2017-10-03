@@ -22,7 +22,7 @@
 
 #include "config.h"
 
-#define DISPLAY_NAME "HexChat"
+#define DISPLAY_NAME "Generic Discord Alternative"
 
 #ifndef WIN32
 #include <sys/types.h>
@@ -36,6 +36,10 @@
 #endif
 
 #include "banlist.h"
+
+#ifdef ENABLE_NLS
+#undef ENABLE_NLS
+#endif
 
 #define flag_c flag_wid[0]
 #define flag_n flag_wid[1]

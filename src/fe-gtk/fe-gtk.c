@@ -131,7 +131,7 @@ fe_args (int argc, char *argv[])
 #ifdef WIN32
 	g_option_context_set_help_enabled (context, FALSE);	/* disable stdout help as stdout is unavailable for subsystem:windows */
 #endif
-	g_option_context_add_main_entries (context, gopt_entries, GETTEXT_PACKAGE);
+	//g_option_context_add_main_entries (context, gopt_entries, GETTEXT_PACKAGE);
 	g_option_context_add_group (context, gtk_get_option_group (FALSE));
 	g_option_context_parse (context, &argc, &argv, &error);
 

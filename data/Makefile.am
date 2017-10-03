@@ -1,9 +1,5 @@
 SUBDIRS =
 
-if DO_PLUGIN
-SUBDIRS += pkgconfig
-endif
-
 if DO_GTK
 SUBDIRS += icons misc man
 else

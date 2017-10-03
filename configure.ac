@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT([HexChat],[2.12.4])
+AC_INIT([GenericDiscordAlternative],[2.12.4])
 
 AC_PREREQ([2.64])
 AC_COPYRIGHT([Copyright (C) 1998-2010 Peter Zelezny])
@@ -34,15 +34,6 @@ LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
 AC_PATH_PROG(MDTOOL, mdtool, no)
 PKG_PROG_PKG_CONFIG
-
-dnl -----------------------------------------------------------
-dnl Language Support
-dnl -----------------------------------------------------------
-GETTEXT_PACKAGE=hexchat
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",[Gettext package name])
-IT_PROG_INTLTOOL([0.40.0])
-AM_GLIB_GNU_GETTEXT
 
 dnl displaced from acconfig.h
 AH_VERBATIM([OLD_PERL],[#undef OLD_PERL])
@@ -81,17 +72,6 @@ AS_IF([test "_$unamepath" = _], [
 		AC_DEFINE(USING_FREEBSD)
 	])
 ])
-
-platform_win32=no
-platform_osx=no
-AS_CASE([$host_os],
-	[*mingw*|*cygwin*|*msys*], [
-		platform_win32=yes
-	],
-	[darwin*], [
-		platform_osx=yes
-	]
-)
 
 dnl *********************************************************************
 dnl ** configure switches ***********************************************
@@ -692,7 +672,7 @@ AC_EGREP_CPP(lookupd, dnl
 #endif], AC_DEFINE([LOOKUPD],1,[Define to 1 if the system uses lookupd]))
 
 dnl freebsd needs this
-LIBS="$LIBS $INTLLIBS"
+LIBS="$LIBS"
 
 GUI_LIBS="$GUI_LIBS $COMMON_LIBS"
 
@@ -723,14 +703,14 @@ AS_IF([test "x$exec_prefix" = xNONE], [
 
 AC_DEFINE_UNQUOTED(PREFIX, "${prefix}")
 
-AS_AC_EXPAND(HEXCHATLIBDIR, "${libdir}/hexchat/plugins")
+AS_AC_EXPAND(HEXCHATLIBDIR, "${libdir}/genericdiscordalternative/plugins")
 AC_DEFINE_UNQUOTED(HEXCHATLIBDIR, "$HEXCHATLIBDIR")
 
 AS_AC_EXPAND(HEXCHATSHAREDIR, "$datadir")
 AC_DEFINE_UNQUOTED(HEXCHATSHAREDIR, "$HEXCHATSHAREDIR")
 
 dnl for plugins/xxx/Makefile.am
-hexchatlibdir=${libdir}/hexchat/plugins
+hexchatlibdir=${libdir}/genericdiscordalternative/plugins
 AC_SUBST(hexchatlibdir)
 
 AC_CONFIG_FILES([
@@ -739,9 +719,7 @@ data/Makefile
 data/icons/Makefile
 data/misc/Makefile
 data/man/Makefile
-data/man/hexchat.1
-data/pkgconfig/Makefile
-data/pkgconfig/hexchat-plugin.pc
+data/man/genericdiscordalternative.1
 src/Makefile
 src/common/Makefile
 src/common/dbus/Makefile
@@ -749,7 +727,6 @@ src/fe-text/Makefile
 src/fe-gtk/Makefile
 src/htm/Makefile
 src/htm/thememan
-osx/Info.plist
 plugins/Makefile
 plugins/lua/Makefile
 plugins/python/Makefile
@@ -757,13 +734,12 @@ plugins/perl/Makefile
 plugins/checksum/Makefile
 plugins/fishlim/Makefile
 plugins/sysinfo/Makefile
-po/Makefile.in
 ])
 
 AC_OUTPUT
 
 echo
-echo HexChat $VERSION
+echo Generic Discord Alternative $VERSION
 echo
 echo GTK+ interface ........ : $gtkfe
 echo Text interface ........ : $textfe

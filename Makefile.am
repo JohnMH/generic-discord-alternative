@@ -2,6 +2,6 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = po src plugins data
+SUBDIRS = src plugins data
 
-EXTRA_DIST = autogen.sh Doxyfile readme.md
+EXTRA_DIST = autogen.sh Doxyfile README.md

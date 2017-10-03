@@ -12,10 +12,8 @@ test -z "$srcdir" && srcdir=.
 if [ "$1" = "--copy" ]; then
 	shift
 	aclocal --force --install || exit 1
-	intltoolize --force --copy --automake || exit 1
 	autoreconf --force --install --include=m4 -Wno-portability || exit 1
 else
-	intltoolize --automake || exit 1
 	autoreconf --install --symlink --include=m4 -Wno-portability || exit 1
 fi
 
